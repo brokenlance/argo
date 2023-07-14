@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: file:///home/bluelance/argo
+    repoURL: git@github.com:brokenlance/argo.git
     targetRevision: HEAD
     path: kube-resources
   destination:
