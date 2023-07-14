@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-demo
+  labels:
+     app: mysql-demo-service
+spec:
+  selector:
+    app: mysql-demo
+  ports:
+    - protocol: TCP
+      name: http-api
+      port: 80
+      targetPort: 8080
+  type: ClusterIP

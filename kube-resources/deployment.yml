@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        version: "3.14159"
+      labels:
+        app: mysql-demo
+    spec:
+      containers:
+        - name: mysql-demo
+          image: brandonbenham/demo:latest
+          ports:
+            - containerPort: 8080
+              name: http-api
+          envFrom:
+            - configMapRef:
+                name: mysql-demo
+          resources:
+            limits:
+              cpu: 300m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - sleep 30
+      terminationGracePeriodSeconds: 120

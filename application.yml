@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql-demo
+spec:
+  project: default
+  source:
+    repoURL: file:///home/bluelance/argo
+    targetRevision: HEAD
+    path: kube-resources
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
