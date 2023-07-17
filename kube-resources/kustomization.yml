@@ -8,4 +8,4 @@ resources:
 - deployment.yml
 
 commonAnnotations:
-  sample-go/version: v2
+  sample-go/version: v3
