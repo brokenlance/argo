@@ -4,3 +4,4 @@ metadata:
   name: mysql-demo
 data:
   MYSQL_HOST: "192.168.1.141"
+  MY_VAR: "TEST-DATA"
